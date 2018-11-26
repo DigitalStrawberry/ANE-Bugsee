@@ -48,7 +48,7 @@ You can provide custom error data as the last argument:
 Bugsee.instance.logError("Error name", errorCode, { additionalData: "..." });
 ```
 
-Bugsee also collects console logs and attaches them to each report. Note that ActionScript's `trace()` calls are stripped from release builds and do no appear in the bug reports. You need to make use of the `logToConsole` method to have console logs appear in your bug reports:
+Bugsee also collects console logs and attaches them to each report. Note that ActionScript's `trace()` calls are removed from release builds and do not appear in the bug reports. You need to make use of the `logToConsole` method to have console logs appear in your bug reports:
 
 ```as3
 Bugsee.instance.logToConsole("Log message");
