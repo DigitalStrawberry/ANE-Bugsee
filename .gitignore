@@ -1,0 +1,14 @@
+actionscript/.idea
+Main.iml
+android/.gradle
+android/.idea
+android/build
+android/gen
+project.properties
+build/temp
+demo_app
+.DS_STORE
+UserInterfaceState.xcuserstate
+ios/Bugsee.xcodeproj/project.xcworkspace/xcuserdata
+ios/Bugsee.xcodeproj/xcuserdata
+bin/com.digitalstrawberry.ane.bugsee.ane
