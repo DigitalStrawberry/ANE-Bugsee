@@ -25,6 +25,7 @@
 #import "AIRBugsee.h"
 #import "AIRBugseeAttachment.h"
 #import "Functions/InitFunc.h"
+#import "Functions/RelaunchFunc.h"
 #import "Functions/LogErrorFunc.h"
 #import "Functions/LogEventFunc.h"
 #import "Functions/AddAttachmentFunc.h"
@@ -67,6 +68,11 @@ AIRBugsee* airBugseeSharedInstance = nil;
     
     [Bugsee launchWithToken:token andOptions:options];
     [Bugsee sharedInstance].delegate = self;
+}
+
+- (void) relaunchWithOptions:(nullable NSDictionary*) options
+{
+    [Bugsee relaunchWithDictionaryOptions:options];
 }
 
 - (void) logError:(nonnull NSString*) name code:(NSInteger) code params:(nullable NSDictionary*) params
@@ -163,6 +169,7 @@ AIRBugsee* airBugseeSharedInstance = nil;
 FRENamedFunction airBugseeExtFunctions[] =
 {
     { (const uint8_t*) "init",              0, bsee_init },
+    { (const uint8_t*) "relaunch",          0, bsee_relaunch },
     { (const uint8_t*) "logError",          0, bsee_logError },
     { (const uint8_t*) "logEvent",          0, bsee_logEvent },
     { (const uint8_t*) "logToConsole",      0, bsee_logToConsole },

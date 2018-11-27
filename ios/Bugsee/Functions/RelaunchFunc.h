@@ -22,24 +22,11 @@
  * SOFTWARE.
  */
 
+#ifndef RelaunchFunc_h
+#define RelaunchFunc_h
+ 
 #import <AIRExtHelpers/FlashRuntimeExtensions.h>
-#import <Foundation/Foundation.h>
-#import <Bugsee/Bugsee.h>
 
-@interface AIRBugsee : NSObject<BugseeDelegate>
+FREObject bsee_relaunch( FREContext context, void* functionData, uint32_t argc, FREObject argv[] );
 
-+ (nonnull AIRBugsee*) sharedInstance;
-
-- (void) initWithToken:(nonnull NSString*) token options:(nullable NSDictionary*) options;
-- (void) relaunchWithOptions:(nullable NSDictionary*) options;
-- (void) logError:(nonnull NSString*) name code:(NSInteger) code params:(nullable NSDictionary*) params;
-- (void) logEvent:(nonnull NSString*) name params:(nullable NSDictionary*) params;
-- (void) addAttachment:(nonnull NSString*) name fileName:(nonnull NSString*) fileName filePath:(nonnull NSString*) filePath;
-- (void) setAttribute:(nonnull NSString*) key value:(nonnull NSString*) value;
-- (void) clearAttribute:(nonnull NSString*) key;
-- (void) clearAttributes;
-- (void) logToConsole:(nonnull NSString*) message;
-- (void) stop;
-- (void) dispose;
-
-@end
+#endif /* RelaunchFunc_h */

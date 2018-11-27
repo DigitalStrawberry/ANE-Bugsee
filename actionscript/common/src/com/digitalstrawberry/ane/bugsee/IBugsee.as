@@ -29,6 +29,7 @@ package com.digitalstrawberry.ane.bugsee {
     public interface IBugsee extends IEventDispatcher {
 
         function init(appToken:String, options:Object = null):void;
+        function relaunch(options:Object = null):void;
 
         function logError(name:String, code:int = -1, params:Object = null):void;
         function logEvent(name:String, params:Object = null):void;

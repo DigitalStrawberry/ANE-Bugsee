@@ -64,6 +64,12 @@ package com.digitalstrawberry.ane.bugsee
 		}
 
 
+		public function relaunch(options:Object = null):void
+		{
+
+		}
+
+
 		public function logError(name:String, code:int = -1, params:Object = null):void
 		{
 		}

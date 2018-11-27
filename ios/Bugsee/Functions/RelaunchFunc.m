@@ -22,24 +22,27 @@
  * SOFTWARE.
  */
 
-#import <AIRExtHelpers/FlashRuntimeExtensions.h>
-#import <Foundation/Foundation.h>
-#import <Bugsee/Bugsee.h>
+#import "RelaunchFunc.h"
+#import <AIRExtHelpers/MPFREObjectUtils.h>
+#import "AIRBugsee.h"
 
-@interface AIRBugsee : NSObject<BugseeDelegate>
-
-+ (nonnull AIRBugsee*) sharedInstance;
-
-- (void) initWithToken:(nonnull NSString*) token options:(nullable NSDictionary*) options;
-- (void) relaunchWithOptions:(nullable NSDictionary*) options;
-- (void) logError:(nonnull NSString*) name code:(NSInteger) code params:(nullable NSDictionary*) params;
-- (void) logEvent:(nonnull NSString*) name params:(nullable NSDictionary*) params;
-- (void) addAttachment:(nonnull NSString*) name fileName:(nonnull NSString*) fileName filePath:(nonnull NSString*) filePath;
-- (void) setAttribute:(nonnull NSString*) key value:(nonnull NSString*) value;
-- (void) clearAttribute:(nonnull NSString*) key;
-- (void) clearAttributes;
-- (void) logToConsole:(nonnull NSString*) message;
-- (void) stop;
-- (void) dispose;
-
-@end
+FREObject bsee_relaunch( FREContext context, void* functionData, uint32_t argc, FREObject argv[] )
+{
+    NSDictionary* options = nil;
+    if(argv[0] != nil)
+    {
+        NSString* jsonStr = [MPFREObjectUtils getNSString:argv[0]];
+        if(jsonStr != nil)
+        {
+            NSData* jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSError* error = nil;
+            id json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            if(error == nil && json != nil && [json isKindOfClass:[NSDictionary class]])
+            {
+                options = (NSDictionary*) json;
+            }
+        }
+    }
+    [[AIRBugsee sharedInstance] relaunchWithOptions:options];
+    return nil;
+}

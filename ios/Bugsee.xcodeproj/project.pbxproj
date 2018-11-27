@@ -10,6 +10,7 @@
 		C3073AE41BE2C77C00EC89B7 /* AIRBugsee.m in Sources */ = {isa = PBXBuildFile; fileRef = C3073AD71BE2C77C00EC89B7 /* AIRBugsee.m */; };
 		C3073AE81BE2C77C00EC89B7 /* InitFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = C3073AE21BE2C77C00EC89B7 /* InitFunc.m */; };
 		C37509FA1C79388900516C15 /* AIRExtHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37509F91C79388900516C15 /* AIRExtHelpers.framework */; };
+		C3CEC8AF21AC4F550031C8C0 /* RelaunchFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CEC8AE21AC4F540031C8C0 /* RelaunchFunc.m */; };
 		C3EA007A21A9EE2200D5804A /* LogErrorFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA007921A9EE2200D5804A /* LogErrorFunc.m */; };
 		C3EA007D21A9EE3B00D5804A /* LogEventFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA007C21A9EE3B00D5804A /* LogEventFunc.m */; };
 		C3EA008021A9EE5200D5804A /* AddAttachmentFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA007F21A9EE5200D5804A /* AddAttachmentFunc.m */; };
@@ -42,6 +43,8 @@
 		C3073AE21BE2C77C00EC89B7 /* InitFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitFunc.m; sourceTree = "<group>"; };
 		C35331DE1B7BCE8A003A7521 /* libBugsee.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBugsee.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37509F91C79388900516C15 /* AIRExtHelpers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AIRExtHelpers.framework; sourceTree = "<group>"; };
+		C3CEC8AD21AC4F540031C8C0 /* RelaunchFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RelaunchFunc.h; sourceTree = "<group>"; };
+		C3CEC8AE21AC4F540031C8C0 /* RelaunchFunc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RelaunchFunc.m; sourceTree = "<group>"; };
 		C3EA007821A9EE2200D5804A /* LogErrorFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogErrorFunc.h; sourceTree = "<group>"; };
 		C3EA007921A9EE2200D5804A /* LogErrorFunc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogErrorFunc.m; sourceTree = "<group>"; };
 		C3EA007B21A9EE3B00D5804A /* LogEventFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogEventFunc.h; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				C3EA009321AAA84000D5804A /* IsTestFlightFunc.m */,
 				C3EA009521AADE5800D5804A /* StopFunc.h */,
 				C3EA009621AADE5800D5804A /* StopFunc.m */,
+				C3CEC8AD21AC4F540031C8C0 /* RelaunchFunc.h */,
+				C3CEC8AE21AC4F540031C8C0 /* RelaunchFunc.m */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				C3073AE41BE2C77C00EC89B7 /* AIRBugsee.m in Sources */,
 				C3EA008321A9EE6400D5804A /* SetAttributeFunc.m in Sources */,
 				C3EA008621A9EE7B00D5804A /* ClearAttributeFunc.m in Sources */,
+				C3CEC8AF21AC4F550031C8C0 /* RelaunchFunc.m in Sources */,
 				C3EA009421AAA84000D5804A /* IsTestFlightFunc.m in Sources */,
 				C3EA009721AADE5800D5804A /* StopFunc.m in Sources */,
 			);

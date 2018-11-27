@@ -85,6 +85,12 @@ package com.digitalstrawberry.ane.bugsee
 		}
 
 
+		public function relaunch(options:Object = null):void
+		{
+			_context.call("relaunch", (options == null) ? null : JSON.stringify(options));
+		}
+
+
 		public function logError(name:String, code:int = -1, params:Object = null):void
 		{
 			_context.call("logError", name, code, (params == null) ? null : JSON.stringify(params));
