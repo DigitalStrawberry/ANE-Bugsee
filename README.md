@@ -75,3 +75,15 @@ Bugsee.instance.clearAttribute("uuid");
 
 Bugsee.instance.clearAttributes();
 ```
+
+#### Stop / Relaunch
+
+You can stop Bugsee completely using the `stop` method. The recording will be stopped and all the used resources will be cleaned up. Bugsee can be relaunched later by calling the `relaunch` method.
+
+```as3
+Bugsee.instance.stop();
+
+...
+
+Bugsee.instance.relaunch(options);
+```
