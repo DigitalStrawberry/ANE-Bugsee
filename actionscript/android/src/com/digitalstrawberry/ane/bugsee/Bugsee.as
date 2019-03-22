@@ -104,7 +104,19 @@ package com.digitalstrawberry.ane.bugsee
 		public function clearAttributes():void
 		{
 		}
-		
+
+
+		public function showFeedbackController():void
+		{
+
+		}
+
+
+		public function setDefaultFeedbackGreeting(value:String):void
+		{
+
+		}
+
 		
 		public function stop():void
 		{

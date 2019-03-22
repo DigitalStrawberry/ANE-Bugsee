@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2018 Digital Strawberry LLC
+ * Copyright (c) 2019 Digital Strawberry LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,26 +22,12 @@
  * SOFTWARE.
  */
 
-#import <AIRExtHelpers/FlashRuntimeExtensions.h>
-#import <Foundation/Foundation.h>
-#import <Bugsee/Bugsee.h>
+#import "ShowFeedbackControllerFunc.h"
+#import <AIRExtHelpers/MPFREObjectUtils.h>
+#import "AIRBugsee.h"
 
-@interface AIRBugsee : NSObject<BugseeDelegate>
-
-+ (nonnull AIRBugsee*) sharedInstance;
-
-- (void) initWithToken:(nonnull NSString*) token options:(nullable NSDictionary*) options;
-- (void) relaunchWithOptions:(nullable NSDictionary*) options;
-- (void) logError:(nonnull NSString*) name code:(NSInteger) code params:(nullable NSDictionary*) params;
-- (void) logEvent:(nonnull NSString*) name params:(nullable NSDictionary*) params;
-- (void) addAttachment:(nonnull NSString*) name fileName:(nonnull NSString*) fileName filePath:(nonnull NSString*) filePath;
-- (void) setAttribute:(nonnull NSString*) key value:(nonnull NSString*) value;
-- (void) clearAttribute:(nonnull NSString*) key;
-- (void) clearAttributes;
-- (void) logToConsole:(nonnull NSString*) message;
-- (void) stop;
-- (void) showFeedbackController;
-- (void) setDefaultFeedbackGreeting:(nonnull NSString*) greeting;
-- (void) dispose;
-
-@end
+FREObject bsee_showFeedbackController( FREContext context, void* functionData, uint32_t argc, FREObject argv[] )
+{
+    [[AIRBugsee sharedInstance] showFeedbackController];
+    return nil;
+}

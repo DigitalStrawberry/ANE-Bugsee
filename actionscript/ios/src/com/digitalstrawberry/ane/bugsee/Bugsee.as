@@ -133,6 +133,22 @@ package com.digitalstrawberry.ane.bugsee
 		}
 
 
+		public function showFeedbackController():void
+		{
+			_context.call("showFeedbackController");
+		}
+
+
+		public function setDefaultFeedbackGreeting(value:String):void
+		{
+			if(value == null)
+			{
+				throw new ArgumentError("Greeting message cannot be null.");
+			}
+			_context.call("setDefaultFeedbackGreeting", value);
+		}
+
+
 		public function stop():void
 		{
 			_context.call("stop");
@@ -146,6 +162,7 @@ package com.digitalstrawberry.ane.bugsee
 				return;
 			}
 
+			_context.removeEventListener(StatusEvent.STATUS, onStatusEvent);
 			_context.dispose();
 			_context = null;
 		}
@@ -172,19 +189,30 @@ package com.digitalstrawberry.ane.bugsee
 		 * Initializes extension context.
 		 * @return <code>true</code> if initialized successfully, <code>false</code> otherwise.
 		 */
-		private static function initExtensionContext():Boolean
+		private function initExtensionContext():Boolean
 		{
 			if(_context === null)
 			{
 				try
 				{
 					_context = ExtensionContext.createExtensionContext(EXTENSION_ID, null);
+					_context.addEventListener(StatusEvent.STATUS, onStatusEvent);
 				}
 				catch(e:Error)
 				{
 				}
 			}
 			return _context !== null;
+		}
+
+
+		private function onStatusEvent(event:StatusEvent):void
+		{
+			if(event.code == BugseeEvent.FEEDBACK)
+			{
+				var messages:Array = event.level.split("||");
+				dispatchEvent(new BugseeEvent(BugseeEvent.FEEDBACK, messages));
+			}
 		}
 
 

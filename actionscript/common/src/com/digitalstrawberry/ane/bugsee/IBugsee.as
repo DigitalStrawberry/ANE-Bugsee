@@ -41,6 +41,9 @@ package com.digitalstrawberry.ane.bugsee {
         function clearAttribute(key:String):void;
         function clearAttributes():void;
 
+	    function setDefaultFeedbackGreeting(value:String):void;
+	    function showFeedbackController():void;
+
 	    function stop():void;
 
         function get isTestFlight():Boolean;

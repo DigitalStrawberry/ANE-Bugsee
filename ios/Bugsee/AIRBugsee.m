@@ -35,6 +35,8 @@
 #import "Functions/LogToConsoleFunc.h"
 #import "Functions/IsTestFlightFunc.h"
 #import "Functions/StopFunc.h"
+#import "Functions/ShowFeedbackControllerFunc.h"
+#import "Functions/SetDefaultFeedbackGreetingFunc.h"
 
 FREContext airBugseeExtContext = nil;
 AIRBugsee* airBugseeSharedInstance = nil;
@@ -133,6 +135,16 @@ AIRBugsee* airBugseeSharedInstance = nil;
     NSLog(@"[Bugsee] %@", message);
 }
 
+- (void) showFeedbackController
+{
+    [Bugsee showFeedbackController];
+}
+
+- (void) setDefaultFeedbackGreeting:(nonnull NSString*) greeting
+{
+    [Bugsee setDefaultFeedbackGreeting:greeting];
+}
+
 - (void) dispose
 {
     [self stop];
@@ -160,6 +172,24 @@ AIRBugsee* airBugseeSharedInstance = nil;
     return @[];
 }
 
+- (void)bugsee:(Bugsee *)bugsee didReceiveNewFeedback:(NSArray<NSString *> *)messages {
+    if(messages.count > 0)
+    {
+        NSMutableString* response = [NSMutableString string];
+        for(NSString* message in messages)
+        {
+            if(response.length > 0)
+            {
+                [response appendString:@"||"];
+            }
+            [response appendString:message];
+        }
+        
+        NSString* event = @"Bugsee::feedback";
+        FREDispatchStatusEventAsync(airBugseeExtContext, (uint8_t*) [event UTF8String], (uint8_t*) [response UTF8String]);
+    }
+}
+
 @end
 
 //
@@ -178,7 +208,9 @@ FRENamedFunction airBugseeExtFunctions[] =
     { (const uint8_t*) "clearAttribute",    0, bsee_clearAttribute },
     { (const uint8_t*) "clearAttributes",   0, bsee_clearAttributes },
     { (const uint8_t*) "isTestFlight",      0, bsee_isTestFlight },
-    { (const uint8_t*) "stop",              0, bsee_stop }
+    { (const uint8_t*) "stop",              0, bsee_stop },
+    { (const uint8_t*) "showFeedbackController", 0, bsee_showFeedbackController },
+    { (const uint8_t*) "setDefaultFeedbackGreeting", 0, bsee_setDefaultFeedbackGreeting }
 };
 
 void BugseeContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet)
