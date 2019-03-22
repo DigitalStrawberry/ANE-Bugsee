@@ -87,3 +87,32 @@ Bugsee.instance.stop();
 
 Bugsee.instance.relaunch(options);
 ```
+
+#### Show feedback controller
+
+You can show a feedback controller that allows your users to communicate with your support and developers.
+Feedback controller:
+
+```as3
+Bugsee.instance.showFeedbackController();
+```
+
+You can add an event listener to receive feedback messages coming from the server. These messages are only received during initialization and not during a live chat session:
+
+```as3
+Bugsee.instance.addEventListener(BugseeEvent.FEEDBACK, feedbackReceived);
+Bugsee.instance.init(...);
+
+...
+
+private function feedbackReceived(event:BugseeEvent):void
+{
+	trace(event.messages);
+}
+```
+
+Default greeting can be set on the server in your application settings. However, for the cases when network is not available, you can set default greeting on the client as well:
+
+```as3
+Bugsee.instance.setDefaultFeedbackGreeting("Hello!");
+```
