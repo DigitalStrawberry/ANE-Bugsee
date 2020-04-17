@@ -17,6 +17,7 @@
 #import "BugseeOptions.h"
 #import "BugseeLogEvent.h"
 #import "BugseeTheme.h"
+#import "BugseeExtendedReport.h"
 
 #define BUGSEE_ASSERT(condition, description) \
 if (!condition) {[Bugsee logAssert:description withLocation:[NSString stringWithFormat:@"%s (%@:%d)", __PRETTY_FUNCTION__, [[NSString stringWithFormat:@"%s", __FILE__] lastPathComponent], __LINE__]]; }
@@ -75,12 +76,16 @@ if (!condition) {[Bugsee logAssert:description withLocation:[NSString stringWith
 -(void) bugsee:(nonnull Bugsee *)bugsee didReceiveNewFeedback:(nonnull NSArray<NSString *> *)messages;
 
 /**
- *  Use this delegate to filter console logs that will sended with report.
+ *  Use this delegate to filter console logs that will be sent with the report.
  *
  *  @param log BugseeLogEvent object with log message and parameters
  *  @param decisionBlock pass BugseeLogEvent into this block, you also can pass nil as argument to remove log
  */
 -(void) bugseeFilterLog:(nonnull BugseeLogEvent *) log completionHandler:(nonnull BugseeLogFilterDecisionBlock)decisionBlock;
+
+/**
+ */
+-(void) bugseeLifecycleEvent:(BugseeLifecycleEventType)eventType;
 
 @end
 
@@ -99,6 +104,7 @@ if (!condition) {[Bugsee logAssert:description withLocation:[NSString stringWith
 
 + (void) showReportController;
 + (void) showReportControllerWithSummary:(nonnull NSString *)summ description:(nonnull NSString*)descr severity:(BugseeSeverityLevel)level NS_SWIFT_NAME(showReportController(summary:description:severity:));
++ (void) showReportControllerWithSummary:(nonnull NSString *)summ description:(nonnull NSString*)descr severity:(BugseeSeverityLevel)level labels:(NSArray<NSString*> * _Nullable)labels NS_SWIFT_NAME(showReportController(summary:description:severity:labels:));
 
 + (nullable NSDictionary *)getLaunchOptions;
 
@@ -132,8 +138,13 @@ if (!condition) {[Bugsee logAssert:description withLocation:[NSString stringWith
 + (void) registerEvent:(nonnull NSString*)eventName withParams:(nonnull NSDictionary*)params NS_SWIFT_NAME(event(_:params:));
 
 + (void) uploadWithSummary:(nonnull NSString*)summary description:(nonnull NSString*)descr severity:(BugseeSeverityLevel)severity NS_SWIFT_NAME(upload(summary:description:severity:));
++ (void) uploadWithSummary:(nonnull NSString*)summary description:(nonnull NSString*)descr severity:(BugseeSeverityLevel)severity labels:(NSArray<NSString*> * _Nullable)labels NS_SWIFT_NAME(upload(summary:description:severity:labels:));
+
++ (BugseeExtendedReport * _Nullable) createReport NS_SWIFT_NAME(createReport());
++ (void) uploadReport:(nonnull BugseeExtendedReport*)report withCompletion:(nullable BugseeEmptyBlock)completionBlock NS_SWIFT_NAME(uploadReport(_:completion:));
 
 + (void) logError:(nonnull NSError *)error NS_SWIFT_NAME(logError(error:));
++ (void) logError:(nonnull NSError *)error labels:(NSArray<NSString*> * _Nullable)labels NS_SWIFT_NAME(logError(error:labels:));
 
 + (void) logAssert:(nonnull NSString *)description withLocation:(nonnull NSString*)location NS_SWIFT_NAME(logAssert(description:location:));
 
@@ -304,6 +315,7 @@ if (!condition) {[Bugsee logAssert:description withLocation:[NSString stringWith
  */
 + (void) logException:(nonnull NSString *)name reason:(nonnull NSString*)reason frames:(nonnull NSArray*)frames type:(nonnull NSString*)type handled:(BOOL)handled synchronous:(BOOL)synchronous;
 + (void) logException:(nonnull NSString *)name reason:(nonnull NSString*)reason frames:(nonnull NSArray*)frames type:(nonnull NSString*)type handled:(BOOL)handled synchronous:(BOOL)synchronous completion:(nullable BugseeEmptyBlock)completionBlock;
++ (void) logException:(nonnull NSString *)name reason:(nonnull NSString*)reason frames:(nonnull NSArray*)frames type:(nonnull NSString*)type labels:(NSArray<NSString*> * _Nullable)labels handled:(BOOL)handled synchronous:(BOOL)synchronous completion:(nullable BugseeEmptyBlock)completionBlock;
 
 /**
  *  Log managed excetpions.
@@ -320,6 +332,7 @@ if (!condition) {[Bugsee logAssert:description withLocation:[NSString stringWith
  *  @param exception nonnull exception here
  */
 + (void) logException:(nonnull NSException *)exception  NS_SWIFT_NAME(logException(exception:));
++ (void) logException:(nonnull NSException *)exception labels:(NSArray<NSString*> * _Nullable)labels NS_SWIFT_NAME(logException(exception:labels:));
 
 /**
  *  Customize bugsee colors here.

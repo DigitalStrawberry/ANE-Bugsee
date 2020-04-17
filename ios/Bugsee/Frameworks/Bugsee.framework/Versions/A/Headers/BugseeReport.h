@@ -10,7 +10,8 @@
 #import "BugseeConstants.h"
 
 @interface BugseeReport : NSObject
-@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString * _Nonnull type;
 @property (nonatomic) BugseeSeverityLevel severity;
+@property (nonatomic, strong) NSArray<NSString*> * _Nullable labels;
 
 @end

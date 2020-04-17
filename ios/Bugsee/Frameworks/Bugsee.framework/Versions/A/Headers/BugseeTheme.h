@@ -73,6 +73,7 @@
  *  Ask for email continue button background color
  */
 @property (nonatomic, strong) UIColor * feedbackEmailContinueActiveColor;
+@property (nonatomic, strong) UIColor * feedbackInputBackgroundColor;
 @property (nonatomic, strong) UIColor * feedbackInputTextColor;
 @property (nonatomic, strong) UIColor * feedbackCloseButtonColor;
 @property (nonatomic, strong) UIColor * feedbackNavigationBarColor;

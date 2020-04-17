@@ -79,6 +79,39 @@
 @property (nonatomic, assign) BOOL crashReport;
 
 /**
+ Whether bug summary is required. If set to YES, then report form will prevent submission while
+ summary field is empty.
+ Default: NO
+ */
+@property (nonatomic, assign) BOOL reportSummaryRequired;
+
+/**
+ Whether bug description is required. If set to YES, then report form will prevent submission while
+ description field is empty.
+ Default: NO
+ */
+@property (nonatomic, assign) BOOL reportDescriptionRequired;
+
+/**
+ Whether email is required. If set to YES, then report form will prevent submission while
+ email field is empty.
+ Default: NO
+ */
+@property (nonatomic, assign) BOOL reportEmailRequired;
+
+/**
+ * Controls whether labels input field is available in bug reporting UI.
+ * Default: NO
+ */
+@property (nonatomic, assign) BOOL reportLabelsEnabled;
+
+/**
+ * Controls whether Labels input field must be filled to submit data in bug reporting UI.
+ * Default: NO
+ */
+@property (nonatomic, assign) BOOL reportLabelsRequired;
+
+/**
  * Detect abnormal termination | experimental method, read more - https://docs.bugsee.com/sdk/ios/app-kills |
  * Default: NO
  */
@@ -115,10 +148,23 @@
 @property (nonatomic, assign) BOOL screenshotEnabled;
 
 /**
+ * Value that when true, enables capturing of
+ * views hierarchy upon bug reporting
+ * Default: true
+ */
+@property (nonatomic, assign) BOOL viewHierarchyEnabled;
+
+/**
  * experemental method may cause a deadlocks, be careful with using it.
  * Default: NO
  */
 @property (nonatomic, assign) BOOL enableMachExceptions;
+
+/**
+* Enable on device symbolication for system frames.
+* Default: YES
+*/
+@property (nonatomic, assign) BOOL enableOnDeviceSymbolication;
 
 /**
  * Allow user to modify priority when reporting manual
@@ -150,6 +196,13 @@
  * Default: YES
  */
 @property (nonatomic, assign) BOOL captureDeviceAndNetworkNames;
+
+/**
+ * Monitor current bluetooth status
+ * NSBluetoothAlwaysUsageDescription info.plist flag needed in ios 13+ versions
+ * Default: NO
+ */
+@property (nonatomic, assign) BOOL monitorBluetoothStatus;
 
 /**
  * Bugsee will avoid using more disk space than specified. <br/>
