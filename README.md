@@ -2,6 +2,10 @@
 
 Adobe AIR native extension for the bug and crash reporting platform [Bugsee](https://www.bugsee.com).
 
+### Bugsee SDK versions
+
+* iOS `v1.25.5` (Apr 7, 2020)
+
 ### Getting Started
 
 Download the ANE from the [releases](../../releases/) page and add it to your app's descriptor:
